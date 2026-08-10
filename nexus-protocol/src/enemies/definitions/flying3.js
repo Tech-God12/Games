@@ -1,0 +1,52 @@
+// ============================================================================
+// flying3.js — More flying enemies: casters, divers, and support air units.
+// ============================================================================
+
+import { EnemyRegistry } from '../EnemyRegistry.js';
+import { StatusType, DamageType } from '../../ecs/components/Combat.js';
+
+EnemyRegistry.registerMany([
+  { id: 'gunship', name: 'Gunship', behavior: 'orbiter', shape: 'drone', color: 0x5577aa, accent: 0xff3df0, scale: 1.5, orientYaw: false,
+    health: 80, speed: 3.5, contactDamage: 10, radius: 0.7, height: 1.0, flying: true, hoverHeight: 3.5, xp: 7, currency: { min: 3, max: 6 }, weight: 2, tier: 4, unlockWave: 14,
+    tags: ['flying', 'ranged', 'elite'], detectRange: 55, eliteHealthMult: 1.6,
+    attack: { type: 'ranged', damage: 11, range: 30, cooldown: 0.9, preferredRange: 10, projectile: { speed: 34, color: 0x5577aa, shape: 'orb', scale: 1, radius: 0.22, lifetime: 4 } },
+    description: 'A heavy gunship orbiting with sustained fire.' },
+  { id: 'bomberWing', name: 'Bomb Wing', behavior: 'bomber', shape: 'orb', color: 0xff5522, accent: 0xffe066, scale: 1, orientYaw: false,
+    health: 24, speed: 6.5, contactDamage: 24, radius: 0.45, height: 0.9, flying: true, hoverHeight: 2.2, xp: 3, currency: { min: 1, max: 3 }, weight: 4, tier: 3, unlockWave: 9,
+    tags: ['flying', 'suicide', 'explosive'], detectRange: 50, description: 'A diving bomb wing. Detonates on contact.' },
+  { id: 'eye', name: 'Watcher', behavior: 'orbiter', shape: 'orb', color: 0xffb347, accent: 0xff3df0, scale: 1, orientYaw: false,
+    health: 35, speed: 4.0, contactDamage: 6, radius: 0.5, height: 0.9, flying: true, hoverHeight: 4.5, xp: 4, currency: { min: 1, max: 3 }, weight: 3, tier: 3, unlockWave: 10,
+    tags: ['flying', 'ranged'], detectRange: 60,
+    attack: { type: 'ranged', damage: 10, range: 40, cooldown: 1.8, preferredRange: 18, projectile: { speed: 36, color: 0xffb347, shape: 'shard', scale: 1, radius: 0.2, lifetime: 5 } },
+    glowPulse: { base: 1, amplitude: 0.6, speed: 2 }, description: 'A high watcher that rains shards from above.' },
+  { id: 'wraith', name: 'Wraith', behavior: 'dodger', shape: 'ghost', color: 0x88aaff, accent: 0xffffff, scale: 1, orientYaw: false,
+    health: 34, speed: 5.4, contactDamage: 10, radius: 0.5, height: 1.3, flying: true, hoverHeight: 2.0, xp: 4, currency: { min: 1, max: 3 }, weight: 3, tier: 3, unlockWave: 11,
+    tags: ['flying', 'evasive', 'ranged'], detectRange: 55, resistances: { kinetic: 0.4 },
+    attack: { type: 'ranged', damage: 9, range: 24, cooldown: 1.5, preferredRange: 14, projectile: { speed: 38, color: 0x88aaff, shape: 'orb', scale: 0.8, radius: 0.2, lifetime: 4 } },
+    description: 'A phasing wraith that dodges and resists kinetics.' },
+  { id: 'lightningRod', name: 'Lightning Rod', behavior: 'shooter', shape: 'drone', color: 0xffe066, accent: 0x29e7ff, scale: 1.1, orientYaw: false,
+    health: 45, speed: 2.8, contactDamage: 8, radius: 0.5, height: 1.0, flying: true, hoverHeight: 4.0, xp: 5, currency: { min: 2, max: 4 }, weight: 3, tier: 4, unlockWave: 13,
+    tags: ['flying', 'ranged', 'status'], detectRange: 55,
+    attack: { type: 'ranged', damage: 10, range: 36, cooldown: 1.4, preferredRange: 18, projectile: { speed: 40, color: 0xffe066, shape: 'shard', scale: 1, radius: 0.22, lifetime: 4 } },
+    contactStatus: { chance: 0.4, type: StatusType.Shock, power: 1 }, glowPulse: { base: 1.2, amplitude: 0.7, speed: 3 },
+    description: 'A flying rod that hurls shock shards from altitude.' },
+  { id: 'frostWisp', name: 'Frost Wisp', behavior: 'orbiter', shape: 'ghost', color: 0x9fe7ff, accent: 0xffffff, scale: 0.9, orientYaw: false,
+    health: 30, speed: 5.0, contactDamage: 8, radius: 0.45, height: 1.1, flying: true, hoverHeight: 2.5, xp: 4, currency: { min: 1, max: 3 }, weight: 3, tier: 3, unlockWave: 11,
+    tags: ['flying', 'ranged', 'status'], detectRange: 50,
+    attack: { type: 'ranged', damage: 7, range: 24, cooldown: 1.3, preferredRange: 8, projectile: { speed: 30, color: 0x9fe7ff, shape: 'orb', scale: 0.8, radius: 0.2, lifetime: 4 } },
+    contactStatus: { chance: 0.5, type: StatusType.Slow, power: 1 }, description: 'An icy wisp that slows on hit.' },
+  { id: 'fireWisp', name: 'Ember Wisp', behavior: 'orbiter', shape: 'ghost', color: 0xff6633, accent: 0xffe066, scale: 0.9, orientYaw: false,
+    health: 30, speed: 5.0, contactDamage: 8, radius: 0.45, height: 1.1, flying: true, hoverHeight: 2.5, xp: 4, currency: { min: 1, max: 3 }, weight: 3, tier: 3, unlockWave: 11,
+    tags: ['flying', 'ranged', 'status'], detectRange: 50,
+    attack: { type: 'ranged', damage: 7, range: 24, cooldown: 1.3, preferredRange: 8, projectile: { speed: 30, color: 0xff6633, shape: 'orb', scale: 0.8, radius: 0.2, lifetime: 4 } },
+    contactStatus: { chance: 0.5, type: StatusType.Burn, power: 1 }, description: 'A burning wisp that ignites on hit.' },
+  { id: 'diveBomber', name: 'Dive Bomber', behavior: 'kamikaze', shape: 'shard', color: 0xff3344, accent: 0xffe066, scale: 1.1, orientYaw: true,
+    health: 22, speed: 10, contactDamage: 20, radius: 0.4, height: 1.0, flying: true, hoverHeight: 3.5, xp: 3, currency: { min: 1, max: 2 }, weight: 3, tier: 3, unlockWave: 12,
+    tags: ['flying', 'fast', 'suicide'], detectRange: 55, description: 'A screaming dive-bomber. Splashes on impact.' },
+  { id: 'shieldDrone', name: 'Shield Drone', behavior: 'shielder', shape: 'drone', color: 0x4aa3ff, accent: 0xffffff, scale: 1, orientYaw: false,
+    health: 45, speed: 3.4, contactDamage: 6, radius: 0.5, height: 1.0, flying: true, hoverHeight: 2.8, xp: 5, currency: { min: 2, max: 4 }, weight: 2, tier: 3, unlockWave: 12,
+    tags: ['flying', 'support'], detectRange: 45, description: 'A flying shielder projecting armor to allies.' },
+  { id: 'healDrone', name: 'Mender Drone', behavior: 'healer', shape: 'drone', color: 0x4fd07a, accent: 0xffffff, scale: 1, orientYaw: false,
+    health: 40, speed: 3.2, contactDamage: 6, radius: 0.5, height: 1.0, flying: true, hoverHeight: 3.0, xp: 5, currency: { min: 2, max: 4 }, weight: 2, tier: 3, unlockWave: 12,
+    tags: ['flying', 'support'], detectRange: 50, description: 'A hovering mender that heals nearby allies.' },
+]);

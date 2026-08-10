@@ -1,0 +1,17 @@
+{
+  "name": "nexus-protocol",
+  "version": "1.0.0",
+  "description": "NEXUS PROTOCOL — a 3D neon arena survival roguelite FPS built with Three.js.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --bind 0.0.0.0",
+    "serve": "python3 -m http.server 8000 --bind 0.0.0.0",
+    "dev": "python3 -m http.server 8000 --bind 0.0.0.0"
+  },
+  "keywords": ["game", "three.js", "fps", "roguelite", "survival", "webgl"],
+  "license": "MIT",
+  "dependencies": {
+    "three": "0.160.0"
+  }
+}
