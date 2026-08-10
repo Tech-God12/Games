@@ -1,0 +1,16 @@
+{
+  "name": "voidbreak",
+  "version": "1.0.0",
+  "description": "VOIDBREAK — a roguelite arena-survival FPS built on a from-scratch WebGL2 engine. Zero runtime dependencies.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/run_tests.js",
+    "check": "node tools/lint_check.js",
+    "count": "node tools/line_count.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

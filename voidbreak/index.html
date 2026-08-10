@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VOIDBREAK — a roguelite arena-survival FPS. Survive the breach." />
+  <title>VOIDBREAK — Survive the Breach</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 L30 16 L16 30 L2 16 Z' fill='%230b0e1a' stroke='%2335f0ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2335f0ff'/%3E%3C/svg%3E" />
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      overflow: hidden; background: #05070d; color: #e8f4ff;
+      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+      -webkit-user-select: none; user-select: none;
+    }
+    #game-canvas { display: block; width: 100vw; height: 100vh; position: fixed; inset: 0; z-index: 0; }
+    #ui-root { position: fixed; inset: 0; z-index: 10; pointer-events: none; }
+    #ui-root.pointer-active { pointer-events: auto; }
+    #boot-screen {
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+      background: #05070d; transition: opacity 0.4s ease;
+    }
+    #boot-screen.hidden { opacity: 0; pointer-events: none; }
+    #boot-screen .logo {
+      font-size: 42px; font-weight: 800; letter-spacing: 8px; color: #35f0ff;
+      text-shadow: 0 0 24px rgba(53,240,255,0.6);
+    }
+    #boot-screen .status { font-size: 13px; letter-spacing: 3px; color: #8fa6bf; text-transform: uppercase; }
+    #boot-screen .bar { width: 260px; height: 3px; background: rgba(143,166,191,0.2); border-radius: 2px; overflow: hidden; }
+    #boot-screen .bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #35f0ff, #ff3d7f); transition: width 0.15s ease; }
+    #fatal-error {
+      position: fixed; inset: 0; z-index: 200; display: none;
+      flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      background: #0a0a12; padding: 40px; text-align: center;
+    }
+    #fatal-error h1 { color: #ff3b3b; margin: 0; }
+    #fatal-error pre { max-width: 800px; white-space: pre-wrap; color: #e8f4ff; font-size: 12px; text-align: left; background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+  <div id="ui-root"></div>
+
+  <div id="boot-screen">
+    <div class="logo">VOIDBREAK</div>
+    <div class="status" id="boot-status">INITIALIZING</div>
+    <div class="bar"><div class="bar-fill" id="boot-bar"></div></div>
+  </div>
+
+  <div id="fatal-error">
+    <h1>VOIDBREAK FAILED TO START</h1>
+    <p id="fatal-message"></p>
+    <pre id="fatal-details"></pre>
+  </div>
+
+  <script type="module" src="./src/boot.js"></script>
+</body>
+</html>
