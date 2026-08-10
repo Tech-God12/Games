@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050912" />
+    <meta name="description" content="Aetherfall: Warden — a neon 3D arena roguelite." />
+    <title>AETHERFALL // WARDEN</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas" aria-label="Aetherfall game world"></canvas>
+      <div class="scanlines"></div>
+      <div class="vignette"></div>
+
+      <section id="title-screen" class="screen active" aria-label="Title screen">
+        <div class="title-backdrop"></div>
+        <div class="title-content">
+          <div class="eyebrow"><span class="status-dot"></span> AETHERFALL // FRONTIER 07</div>
+          <h1>AETHER<span>FALL</span></h1>
+          <div class="subtitle">WARDEN PROTOCOL</div>
+          <p class="title-copy">The sky broke. You are what stands in the breach.</p>
+          <button id="deploy-button" class="primary-button"><span>DEPLOY WARDEN</span><b>↗</b></button>
+          <div class="title-meta">
+            <span><kbd>WASD</kbd> MOVE</span>
+            <span><kbd>MOUSE</kbd> AIM / FIRE</span>
+            <span><kbd>SPACE</kbd> DASH</span>
+            <span><kbd>Q</kbd> VOID PULSE</span>
+          </div>
+        </div>
+        <div class="title-footer">
+          <span>BUILD 0.9.7 // SOLSTICE</span>
+          <span>ONLINE // SIGNAL STABLE</span>
+        </div>
+      </section>
+
+      <header id="hud" class="hud hidden">
+        <div class="hud-brand"><span class="brand-mark">✦</span><span>WARDEN</span><small>07</small></div>
+        <div class="mission-block">
+          <div class="mission-label">CURRENT DIRECTIVE <span id="directive-state">LIVE</span></div>
+          <div id="directive-text" class="mission-name">SECURE THE RIFT</div>
+          <div class="mission-progress"><i id="mission-progress-bar"></i></div>
+        </div>
+        <div class="score-block">
+          <div class="score-label">SCORE</div>
+          <strong id="score-value">000000</strong>
+          <span id="combo-value">x1.0 COMBO</span>
+        </div>
+        <button id="pause-button" class="icon-button" aria-label="Pause">Ⅱ</button>
+      </header>
+
+      <div id="world-hud" class="hud hidden">
+        <div id="wave-badge" class="wave-badge"><span>WAVE</span><strong id="wave-value">01</strong></div>
+        <div id="enemy-count" class="enemy-count">HOSTILES <b>0</b></div>
+        <div id="event-feed" class="event-feed"></div>
+        <div class="crosshair" id="crosshair"><i></i><i></i><i></i><i></i><b></b></div>
+        <div id="damage-flash" class="damage-flash"></div>
+        <div class="reticle-label">RIFT VECTOR <span id="reticle-distance">--</span></div>
+      </div>
+
+      <footer id="combat-hud" class="combat-hud hidden">
+        <div class="pilot-card">
+          <div class="pilot-avatar">W</div>
+          <div class="pilot-info"><strong>LYRA-7</strong><span>RIFT WARDEN</span></div>
+          <div class="level-chip">LV <b id="level-value">01</b></div>
+        </div>
+        <div class="vital-stack">
+          <div class="vital-row"><span>HULL</span><div class="bar hull"><i id="health-bar"></i></div><b id="health-value">100 / 100</b></div>
+          <div class="vital-row"><span>AEGIS</span><div class="bar shield"><i id="shield-bar"></i></div><b id="shield-value">40 / 40</b></div>
+          <div class="xp-row"><span>SYNC</span><div class="bar xp"><i id="xp-bar"></i></div><b id="xp-value">0%</b></div>
+        </div>
+        <div class="ability-rack">
+          <div id="dash-ability" class="ability ready"><kbd>SPACE</kbd><div class="ability-icon">✧</div><span>DASH</span><i></i></div>
+          <div id="pulse-ability" class="ability ready"><kbd>Q</kbd><div class="ability-icon">◉</div><span>VOID PULSE</span><i></i></div>
+          <div id="overdrive-ability" class="ability locked"><kbd>E</kbd><div class="ability-icon">♢</div><span>OVERDRIVE</span><i></i></div>
+        </div>
+        <div class="mini-map-wrap"><canvas id="mini-map" width="152" height="152"></canvas><span class="map-label">TACTICAL</span></div>
+      </footer>
+
+      <section id="upgrade-screen" class="screen modal-screen hidden" aria-label="Upgrade selection">
+        <div class="modal-panel upgrade-panel">
+          <div class="modal-kicker">SYNCHRONIZATION COMPLETE <span id="upgrade-level">LEVEL 02</span></div>
+          <h2>Choose your <em>edge.</em></h2>
+          <p class="modal-copy">Your frame learned from the breach. Install one protocol before returning to the storm.</p>
+          <div id="upgrade-cards" class="upgrade-cards"></div>
+          <div class="modal-footer"><span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> SELECT PROTOCOL</span><span class="muted">Every choice echoes.</span></div>
+        </div>
+      </section>
+
+      <section id="pause-screen" class="screen modal-screen hidden" aria-label="Paused">
+        <div class="modal-panel pause-panel">
+          <div class="modal-kicker">WARDEN LINK // HOLD</div>
+          <h2>Signal <em>paused.</em></h2>
+          <p class="modal-copy">The rift is waiting. The frontier is not.</p>
+          <button id="resume-button" class="primary-button"><span>RESUME MISSION</span><b>↗</b></button>
+          <div class="pause-hints"><span><kbd>ESC</kbd> RESUME</span><span><kbd>R</kbd> RESTART</span></div>
+        </div>
+      </section>
+
+      <section id="gameover-screen" class="screen modal-screen hidden" aria-label="Mission debrief">
+        <div class="modal-panel gameover-panel">
+          <div class="modal-kicker danger">WARDEN LINK // LOST</div>
+          <h2>Fall <em>recorded.</em></h2>
+          <p class="modal-copy">The rift took this sector. It did not take your data.</p>
+          <div class="debrief-grid">
+            <div><span>FINAL SCORE</span><strong id="final-score">000000</strong></div>
+            <div><span>WAVE REACHED</span><strong id="final-wave">01</strong></div>
+            <div><span>HOSTILES CLEARED</span><strong id="final-kills">000</strong></div>
+            <div><span>BEST COMBO</span><strong id="final-combo">x1.0</strong></div>
+          </div>
+          <button id="restart-button" class="primary-button"><span>REDEPLOY</span><b>↗</b></button>
+          <div class="pause-hints"><span><kbd>R</kbd> RESTART</span><span><kbd>ESC</kbd> TITLE</span></div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" role="status"></div>
+      <div id="loading" class="loading"><span class="loader-mark">✦</span><span>CALIBRATING RIFT VECTOR</span></div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
