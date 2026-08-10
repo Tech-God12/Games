@@ -1,10 +1,20 @@
 {
-  "name": "aetherfall-warden",
+  "name": "nexus-fragment",
   "version": "1.0.0",
-  "private": true,
   "type": "module",
+  "description": "NEXUS: FRAGMENT - 100k lines Battle Royale FPS + AETHERFALL WARDEN (archived)",
   "scripts": {
-    "dev": "python3 -m http.server 4173 --bind 0.0.0.0",
-    "preview": "python3 -m http.server 4173 --bind 0.0.0.0"
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "dev:aetherfall": "python3 -m http.server 4173 --bind 0.0.0.0",
+    "preview:aetherfall": "python3 -m http.server 4173 --bind 0.0.0.0"
+  },
+  "dependencies": {
+    "three": "^0.164.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
   }
 }
