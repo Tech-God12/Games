@@ -87,6 +87,9 @@ import * as _Lore from '../data/Lore.js';
 import { installExtraLore } from '../data/Lore2.js';
 installExtraLore(_Lore);
 import '../pickups/Pickups.js';
+import * as _Shaders from '../render/Shaders.js';
+import { installExtraShaders } from '../render/Shaders2.js';
+installExtraShaders(_Shaders);
 
 import { WeaponRegistry } from '../weapons/WeaponRegistry.js';
 import { EnemyRegistry } from '../enemies/EnemyRegistry.js';
