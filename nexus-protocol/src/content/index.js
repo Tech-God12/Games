@@ -80,6 +80,7 @@ import '../abilities/definitions/abilities3.js';
 import '../abilities/definitions/abilities4.js';
 import '../abilities/definitions/abilities5.js';
 import '../abilities/definitions/abilities6.js';
+import '../abilities/definitions/abilities7.js';
 
 // Characters
 import '../player/Characters.js';
