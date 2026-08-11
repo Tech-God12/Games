@@ -65,6 +65,7 @@ import '../perks/definitions/perks2.js';
 import '../perks/definitions/perks3.js';
 import '../perks/definitions/perks4.js';
 import '../perks/definitions/perks5.js';
+import '../perks/definitions/perks6.js';
 
 // Abilities
 import '../abilities/definitions/abilities.js';
