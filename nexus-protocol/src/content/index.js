@@ -48,6 +48,7 @@ import '../enemies/definitions/ground5.js';
 import '../enemies/definitions/enemies7.js';
 import '../enemies/definitions/enemies8.js';
 import '../enemies/definitions/enemies9.js';
+import '../enemies/definitions/enemies10.js';
 
 // Bosses
 import '../bosses/definitions/bosses.js';
