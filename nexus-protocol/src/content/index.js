@@ -82,6 +82,7 @@ import '../player/Characters2.js';
 import '../player/Characters3.js';
 import '../player/Characters4.js';
 import '../player/Characters5.js';
+import '../player/Characters6.js';
 
 // Extended localization
 import { installExtraLocalization } from '../data/Localization2.js';
