@@ -49,6 +49,7 @@ import '../bosses/definitions/bosses2.js';
 import '../bosses/definitions/bosses3.js';
 import '../bosses/definitions/bosses4.js';
 import '../bosses/definitions/bosses5.js';
+import '../bosses/definitions/bosses6.js';
 
 // Items
 import '../items/definitions/items.js';
