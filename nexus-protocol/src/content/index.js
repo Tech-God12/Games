@@ -28,6 +28,7 @@ import '../weapons/definitions/special2.js';
 import '../weapons/definitions/heavy4.js';
 import '../weapons/definitions/precision2.js';
 import '../weapons/definitions/sidearms2.js';
+import '../weapons/definitions/energy3.js';
 
 // Enemies
 import '../enemies/definitions/basic.js';
