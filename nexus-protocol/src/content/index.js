@@ -82,6 +82,7 @@ import '../player/Characters5.js';
 import { installExtraLocalization } from '../data/Localization2.js';
 import * as _Loc from '../data/Localization.js';
 installExtraLocalization(_Loc);
+import '../data/WaveScripts2.js';
 
 import { WeaponRegistry } from '../weapons/WeaponRegistry.js';
 import { EnemyRegistry } from '../enemies/EnemyRegistry.js';
