@@ -24,6 +24,7 @@ import '../weapons/definitions/smgs2.js';
 import '../weapons/definitions/heavy3.js';
 import '../weapons/definitions/energy2.js';
 import '../weapons/definitions/melee2.js';
+import '../weapons/definitions/special2.js';
 
 // Enemies
 import '../enemies/definitions/basic.js';
