@@ -18,6 +18,9 @@ import '../weapons/definitions/experimental.js';
 import '../weapons/definitions/ballistic.js';
 import '../weapons/definitions/sidearms.js';
 import '../weapons/definitions/rifles2.js';
+import '../weapons/definitions/snipers2.js';
+import '../weapons/definitions/shotguns2.js';
+import '../weapons/definitions/smgs2.js';
 
 // Enemies
 import '../enemies/definitions/basic.js';
@@ -33,6 +36,7 @@ import '../enemies/definitions/ground4.js';
 import '../enemies/definitions/swarm.js';
 import '../enemies/definitions/enemies5.js';
 import '../enemies/definitions/casters.js';
+import '../enemies/definitions/enemies6.js';
 
 // Bosses
 import '../bosses/definitions/bosses.js';
@@ -47,6 +51,7 @@ import '../items/definitions/items2.js';
 import '../items/definitions/items3.js';
 import '../items/definitions/items4.js';
 import '../items/definitions/items5.js';
+import '../items/definitions/items6.js';
 
 // Perks
 import '../perks/definitions/perks.js';
