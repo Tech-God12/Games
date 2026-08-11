@@ -1,0 +1,42 @@
+// ============================================================================
+// heavy3.js — More heavy ordnance: launchers, cannons, and area-saturation
+// weapons for crowd control and boss damage.
+// ============================================================================
+
+import { WeaponRegistry } from '../WeaponRegistry.js';
+import { FireMode, WeaponRarity } from '../Weapon.js';
+import { DamageType, StatusType } from '../../ecs/components/Combat.js';
+
+const R = (def) => WeaponRegistry.register(def);
+const vmdl = (accent, shape = 'launcher', len = 0.7) => ({ color: 0x223044, accent, length: len, shape });
+
+R({ id: 'rocket2', name: 'Hornet Launcher', category: 'heavy', rarity: WeaponRarity.Rare, fireMode: FireMode.Projectile, auto: false,
+  damage: 60, damageType: DamageType.Explosive, fireRate: 1.0, magazine: 5, reserveMax: 30, reloadTime: 2.2, spread: 0.0, range: 70, knockback: 14, recoil: 3.0, screenShake: 0.18, sfx: 'shoot_rocket',
+  projectile: { speed: 44, gravity: 0.2, lifetime: 2.5, color: 0xff5544, radius: 0.22, shape: 'chunky', scale: 1.3, aoe: 5, aoeFalloff: 0.5, glow: true, trail: true }, viewmodel: vmdl(0xff5544), projectileColor: 0xff5544, impactColor: 0xff5544, description: 'A fast rocket launcher. Quick, direct explosions.', price: 300, unlockWave: 6, tags: ['explosive', 'aoe', 'crowd'] });
+R({ id: 'homingLauncher', name: 'Seeker Launcher', category: 'heavy', rarity: WeaponRarity.Epic, fireMode: FireMode.Projectile, auto: false,
+  damage: 65, damageType: DamageType.Explosive, fireRate: 0.9, magazine: 4, reserveMax: 24, reloadTime: 2.4, spread: 0.0, range: 70, knockback: 14, recoil: 2.8, screenShake: 0.18, sfx: 'shoot_rocket',
+  projectile: { speed: 36, gravity: 0.1, lifetime: 3, color: 0xff7733, radius: 0.22, shape: 'chunky', scale: 1.3, aoe: 5, aoeFalloff: 0.5, homing: 0.6, glow: true, trail: true }, viewmodel: vmdl(0xff7733), projectileColor: 0xff7733, impactColor: 0xff7733, description: 'A seeker launcher. Rockets that home on the nearest foe.', price: 460, unlockWave: 9, tags: ['explosive', 'aoe', 'homing', 'crowd'] });
+R({ id: 'plasmaCannon2', name: 'Plasma Cannon', category: 'heavy', rarity: WeaponRarity.Epic, fireMode: FireMode.Projectile, auto: false,
+  damage: 100, damageType: DamageType.Energy, fireRate: 0.8, magazine: 5, reserveMax: 25, reloadTime: 2.4, spread: 0.0, range: 55, knockback: 18, recoil: 3.0, screenShake: 0.22, sfx: 'shoot_plasma',
+  projectile: { speed: 30, gravity: 0.4, lifetime: 2.4, color: 0x29e7ff, radius: 0.4, shape: 'orb', scale: 1.8, aoe: 7, aoeFalloff: 0.3, glow: true, trail: true }, viewmodel: vmdl(0x29e7ff), projectileColor: 0x29e7ff, impactColor: 0x29e7ff, statusChance: 0.5, statusType: StatusType.Burn, statusPower: 2, statusDuration: 3, description: 'A plasma cannon. Lobs huge burning plasma orbs.', price: 480, unlockWave: 10, tags: ['explosive', 'aoe', 'energy', 'burn'] });
+R({ id: 'shardCannon', name: 'Shard Cannon', category: 'heavy', rarity: WeaponRarity.Epic, fireMode: FireMode.Projectile, auto: false,
+  damage: 18, damageType: DamageType.Kinetic, fireRate: 1.2, magazine: 6, reserveMax: 36, reloadTime: 2.0, pellets: 6, spread: 0.12, range: 40, knockback: 8, recoil: 2.2, screenShake: 0.16, sfx: 'shoot_rifle',
+  projectile: { speed: 44, gravity: 0.3, lifetime: 2, color: 0x9fb3d6, radius: 0.16, shape: 'shard', scale: 1.2, aoe: 2, aoeFalloff: 0.5, glow: true, trail: true }, viewmodel: vmdl(0x9fb3d6), projectileColor: 0x9fb3d6, impactColor: 0x9fb3d6, description: 'A shard cannon. Scatters explosive shards.', price: 420, unlockWave: 9, tags: ['explosive', 'aoe', 'spread', 'crowd'] });
+R({ id: 'infernoCannon', name: 'Inferno Cannon', category: 'heavy', rarity: WeaponRarity.Legendary, fireMode: FireMode.Projectile, auto: false,
+  damage: 80, damageType: DamageType.Fire, fireRate: 0.9, magazine: 5, reserveMax: 25, reloadTime: 2.4, spread: 0.0, range: 50, knockback: 14, recoil: 3.0, screenShake: 0.2, sfx: 'shoot_rocket',
+  projectile: { speed: 32, gravity: 0.4, lifetime: 2.4, color: 0xff5522, radius: 0.36, shape: 'chunky', scale: 1.6, aoe: 7, aoeFalloff: 0.3, glow: true, trail: true }, viewmodel: vmdl(0xff5522), projectileColor: 0xff5522, impactColor: 0xff5522, statusChance: 0.8, statusType: StatusType.Burn, statusPower: 3, statusDuration: 4, description: 'An inferno cannon. Leaves the arena burning.', price: 660, unlockWave: 13, tags: ['explosive', 'aoe', 'fire', 'status'] });
+R({ id: 'cryoCannon', name: 'Cryo Cannon', category: 'heavy', rarity: WeaponRarity.Legendary, fireMode: FireMode.Projectile, auto: false,
+  damage: 70, damageType: DamageType.Cryo, fireRate: 0.9, magazine: 5, reserveMax: 25, reloadTime: 2.4, spread: 0.0, range: 50, knockback: 10, recoil: 2.8, screenShake: 0.2, sfx: 'shoot_plasma',
+  projectile: { speed: 32, gravity: 0.4, lifetime: 2.4, color: 0x9fe7ff, radius: 0.36, shape: 'chunky', scale: 1.6, aoe: 7, aoeFalloff: 0.3, glow: true, trail: true }, viewmodel: vmdl(0x9fe7ff), projectileColor: 0x9fe7ff, impactColor: 0x9fe7ff, statusChance: 0.8, statusType: StatusType.Freeze, statusPower: 2, statusDuration: 3, description: 'A cryo cannon. Freezes everything in its blast.', price: 660, unlockWave: 13, tags: ['explosive', 'aoe', 'cryo', 'control'] });
+R({ id: 'stormCannon', name: 'Storm Cannon', category: 'heavy', rarity: WeaponRarity.Legendary, fireMode: FireMode.Projectile, auto: false,
+  damage: 75, damageType: DamageType.Shock, fireRate: 0.9, magazine: 5, reserveMax: 25, reloadTime: 2.4, spread: 0.0, range: 50, knockback: 16, recoil: 2.8, screenShake: 0.2, sfx: 'shoot_lightning',
+  projectile: { speed: 34, gravity: 0.2, lifetime: 2.5, color: 0xffe066, radius: 0.34, shape: 'orb', scale: 1.5, aoe: 7, aoeFalloff: 0.3, homing: 0.3, glow: true, trail: true }, viewmodel: vmdl(0xffe066), projectileColor: 0xffe066, impactColor: 0xffe066, statusChance: 0.7, statusType: StatusType.Shock, statusPower: 3, statusDuration: 3, description: 'A storm cannon. Homing shock orbs that stun a wide area.', price: 680, unlockWave: 13, tags: ['explosive', 'aoe', 'shock', 'homing'] });
+R({ id: 'multicanon', name: 'Multicannon', category: 'heavy', rarity: WeaponRarity.Epic, fireMode: FireMode.Projectile, auto: true,
+  damage: 40, damageType: DamageType.Explosive, fireRate: 2.5, magazine: 12, reserveMax: 72, reloadTime: 2.6, spread: 0.05, range: 55, knockback: 12, recoil: 2.0, screenShake: 0.14, sfx: 'shoot_rocket',
+  projectile: { speed: 40, gravity: 0.2, lifetime: 2.2, color: 0xff7733, radius: 0.18, shape: 'chunky', scale: 1, aoe: 3.5, aoeFalloff: 0.5, homing: 0.2, glow: true, trail: true }, viewmodel: vmdl(0xff7733), projectileColor: 0xff7733, impactColor: 0xff7733, description: 'A multicannon. Auto-fires small homing rockets.', price: 480, unlockWave: 10, tags: ['explosive', 'aoe', 'homing', 'auto', 'crowd'] });
+R({ id: 'voidCannon', name: 'Void Cannon', category: 'heavy', rarity: WeaponRarity.Mythic, fireMode: FireMode.Projectile, auto: false,
+  damage: 90, damageType: DamageType.Energy, fireRate: 0.7, magazine: 3, reserveMax: 15, reloadTime: 2.8, spread: 0.0, range: 55, knockback: 0, recoil: 2.6, screenShake: 0.22, sfx: 'shoot_plasma',
+  projectile: { speed: 22, gravity: 0, lifetime: 3, color: 0x8a5bff, radius: 0.6, shape: 'orb', scale: 2, aoe: 10, aoeFalloff: 0.0, proximity: 7, glow: true, trail: true }, viewmodel: vmdl(0x8a5bff, 'heavy', 0.8), projectileColor: 0x8a5bff, impactColor: 0x8a5bff, statusChance: 0.7, statusType: StatusType.Slow, statusPower: 3, statusDuration: 4, description: 'A mythic void cannon. A gravity warhead that pulls and slows.', price: 900, unlockWave: 17, tags: ['explosive', 'aoe', 'control', 'mythic', 'special'] });
+R({ id: 'novaCannon2', name: 'Nova Cannon', category: 'heavy', rarity: WeaponRarity.Mythic, fireMode: FireMode.Projectile, auto: false,
+  damage: 50, damageType: DamageType.Energy, fireRate: 0.6, magazine: 3, reserveMax: 12, reloadTime: 2.8, spread: 0.0, range: 55, knockback: 26, recoil: 3.0, screenShake: 0.26, sfx: 'shoot_railgun',
+  projectile: { speed: 26, gravity: 0, lifetime: 2.8, color: 0x29e7ff, radius: 0.5, shape: 'orb', scale: 2, aoe: 10, aoeFalloff: 0.2, pierce: 99, glow: true, trail: true }, viewmodel: vmdl(0x29e7ff, 'heavy', 0.8), projectileColor: 0x29e7ff, impactColor: 0x29e7ff, description: 'A mythic nova cannon. A walking nova that pierces and detonates.', price: 920, unlockWave: 18, tags: ['explosive', 'aoe', 'pierce', 'mythic', 'special'] });
