@@ -1,0 +1,17 @@
+{
+  "name": "nexus-veil-sector9",
+  "version": "0.9.0",
+  "description": "NEXUS VEIL: Sector 9 - FPS Extraction Battlegrounds - 100K LOC Engine",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173"
+  },
+  "dependencies": {
+    "three": "^0.162.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
