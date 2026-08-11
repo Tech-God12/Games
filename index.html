@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS: FRAGMENT — Battle Royale FPS</title>
+  <meta name="description" content="A 100,000 line premium 3D Battle Royale FPS on the shattered orbital ring. Drop, loot, survive."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;overflow:hidden;background:#020308;font-family:'Rajdhani',system-ui,sans-serif}
+    canvas{display:block}
+    #loader{position:fixed;inset:0;background:radial-gradient(1200px 600px at 50% -10%, #1a2a6a 0%, #020308 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:100;color:#fff;transition:opacity .6s}
+    #loader h1{font-family:'Orbitron',monospace;font-size:42px;letter-spacing:.18em;font-weight:900;background:linear-gradient(90deg,#00f5ff,#ff00e6,#ffcc00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 18px rgba(0,245,255,.6))}
+    #loader p{margin-top:12px;opacity:.7;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em}
+    #bar{width:360px;height:3px;background:rgba(255,255,255,.12);border-radius:999px;margin-top:22px;overflow:hidden}
+    #fill{height:100%;width:0%;background:linear-gradient(90deg,#00f5ff,#7b61ff,#ff00e6);box-shadow:0 0 12px rgba(0,245,255,.8);transition:width .2s}
+    #stats{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5;letter-spacing:.08em}
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <h1>NEXUS : FRAGMENT</h1>
+    <p>100,000 LINES // BATTLE ROYALE FPS // ORBITAL RING-07</p>
+    <div id="bar"><div id="fill"></div></div>
+    <div id="stats">INITIALIZING FRAGMENT CORE — PLEASE WAIT</div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

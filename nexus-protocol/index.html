@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#05060a" />
+  <title>NEXUS PROTOCOL — Arena Survivor</title>
+  <style>
+    :root {
+      --neon-cyan: #29e7ff;
+      --neon-magenta: #ff3df0;
+      --neon-violet: #8a5bff;
+      --neon-amber: #ffb347;
+      --bg: #05060a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden; background: var(--bg);
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: #e8f1ff; user-select: none; -webkit-user-select: none;
+      cursor: default;
+    }
+    #app { position: fixed; inset: 0; }
+    canvas { display: block; }
+
+    /* ---------- Boot / Loading screen ---------- */
+    #boot {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(42,231,255,0.10), transparent 60%),
+        radial-gradient(ellipse at 50% 80%, rgba(255,61,240,0.10), transparent 60%),
+        #05060a;
+      transition: opacity 0.8s ease;
+    }
+    #boot.hide { opacity: 0; pointer-events: none; }
+    .boot-logo {
+      font-size: clamp(28px, 6vw, 72px); font-weight: 800; letter-spacing: 0.35em;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-violet));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 0 40px rgba(42,231,255,0.25);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    .boot-sub { margin-top: 10px; font-size: clamp(10px,1.4vw,16px); letter-spacing: 0.55em; color: #6f86a8; text-transform: uppercase; }
+    @keyframes pulse { 0%,100% { filter: brightness(1);} 50% { filter: brightness(1.25);} }
+    .boot-bar-wrap { margin-top: 36px; width: min(420px, 70vw); }
+    .boot-bar { height: 6px; border-radius: 4px; background: rgba(255,255,255,0.08); overflow: hidden; }
+    .boot-bar-fill { height: 100%; width: 0%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+      box-shadow: 0 0 18px rgba(42,231,255,0.6); transition: width 0.15s linear; }
+    .boot-status { margin-top: 14px; font-size: 12px; letter-spacing: 0.18em; color: #8aa0c4; text-transform: uppercase; min-height: 16px; }
+    .boot-hint { position: absolute; bottom: 24px; font-size: 11px; letter-spacing: 0.25em; color: #45597a; text-transform: uppercase; }
+
+    /* ---------- Fatal error screen ---------- */
+    #fatal { position: fixed; inset: 0; z-index: 2000; display: none; padding: 40px;
+      background: rgba(8,5,12,0.96); color: #ffb4c4; font-family: monospace; overflow: auto; }
+    #fatal h2 { color: #ff5d7a; letter-spacing: 0.2em; margin-bottom: 12px; }
+    #fatal pre { white-space: pre-wrap; word-break: break-word; font-size: 13px; line-height: 1.5; }
+
+    /* Pointer lock hint */
+    #lockHint {
+      position: fixed; inset: 0; z-index: 500; display: none;
+      align-items: center; justify-content: center; pointer-events: none;
+      background: rgba(5,6,10,0.45); backdrop-filter: blur(2px);
+    }
+    #lockHint .box { text-align: center; }
+    #lockHint .box h3 { font-size: 22px; letter-spacing: 0.3em; color: var(--neon-cyan); text-transform: uppercase; }
+    #lockHint .box p { margin-top: 10px; color: #9fb3d6; letter-spacing: 0.15em; font-size: 13px; text-transform: uppercase; }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three.module.js",
+      "three/addons/": "./vendor/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <div id="boot">
+    <div class="boot-logo">NEXUS&nbsp;PROTOCOL</div>
+    <div class="boot-sub">Arena Survivor</div>
+    <div class="boot-bar-wrap">
+      <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+      <div class="boot-status" id="bootStatus">Initializing core…</div>
+    </div>
+    <div class="boot-hint">A neon-soaked roguelite survival shooter</div>
+  </div>
+
+  <div id="lockHint">
+    <div class="box">
+      <h3>Click to engage</h3>
+      <p>Move mouse to look · WASD to move · ESC to release</p>
+    </div>
+  </div>
+
+  <div id="fatal">
+    <h2>NEXUS PROTOCOL — RUNTIME FAULT</h2>
+    <pre id="fatalMsg"></pre>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

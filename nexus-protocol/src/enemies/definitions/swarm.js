@@ -1,0 +1,55 @@
+// ============================================================================
+// swarm.js — Swarm & chaff enemies: the cannon fodder that fills early waves
+// and supplements late ones. individually weak, collectively dangerous.
+// ============================================================================
+
+import { EnemyRegistry } from '../EnemyRegistry.js';
+import { StatusType, DamageType } from '../../ecs/components/Combat.js';
+
+EnemyRegistry.registerMany([
+  { id: 'mite', name: 'Mite', behavior: 'swarm', shape: 'swarm', color: 0xffaa44, accent: 0xffffff, scale: 0.5, orientYaw: false,
+    health: 5, speed: 9, contactDamage: 3, radius: 0.22, height: 0.4, xp: 1, currency: { min: 0, max: 1, chance: 0.3 }, weight: 14, tier: 0, unlockWave: 0,
+    tags: ['ground', 'swarm', 'fast'], detectRange: 35, description: 'The smallest threat in the Nexus. Barely a threat at all.' },
+  { id: 'gnat2', name: 'Gnat', behavior: 'swarm', shape: 'swarm', color: 0x66ff88, accent: 0xffffff, scale: 0.4, orientYaw: false,
+    health: 4, speed: 10, contactDamage: 2, radius: 0.2, height: 0.4, xp: 1, currency: { min: 0, max: 1, chance: 0.3 }, weight: 14, tier: 0, unlockWave: 1,
+    tags: ['flying', 'swarm', 'fast'], detectRange: 35, flying: true, hoverHeight: 1.5, description: 'A gnat. Ignore it long enough and it becomes a problem.' },
+  { id: 'rat', name: 'Rat', behavior: 'fastChaser', shape: 'spider', color: 0x886644, accent: 0x222222, scale: 0.6, orientYaw: true,
+    health: 8, speed: 8.5, contactDamage: 4, radius: 0.3, height: 0.5, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 12, tier: 0, unlockWave: 1,
+    tags: ['ground', 'fast', 'chaser'], detectRange: 40, description: 'A neon rat. Fast, fragile, furious.' },
+  { id: 'crawler2', name: 'Crawler', behavior: 'chaser', shape: 'spider', color: 0x4aa3ff, accent: 0x222222, scale: 0.7, orientYaw: true,
+    health: 12, speed: 5.5, contactDamage: 5, radius: 0.35, height: 0.6, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 11, tier: 1, unlockWave: 2,
+    tags: ['ground', 'chaser'], detectRange: 45, description: 'A skittering crawler. The Swarm\'s infantry.' },
+  { id: 'sprite', name: 'Sprite', behavior: 'swarm', shape: 'swarm', color: 0x29e7ff, accent: 0xffffff, scale: 0.5, orientYaw: false,
+    health: 7, speed: 9, contactDamage: 3, radius: 0.25, height: 0.5, xp: 1, currency: { min: 0, max: 1, chance: 0.4 }, weight: 12, tier: 1, unlockWave: 2,
+    tags: ['flying', 'swarm', 'fast'], detectRange: 40, flying: true, hoverHeight: 1.6, description: 'A whirring sprite. Energy given wings.' },
+  { id: 'imp', name: 'Imp', behavior: 'fastChaser', shape: 'shard', color: 0xff5522, accent: 0xffe066, scale: 0.7, orientYaw: true,
+    health: 14, speed: 8, contactDamage: 6, radius: 0.35, height: 0.8, xp: 1, currency: { min: 0, max: 2, chance: 0.6 }, weight: 10, tier: 1, unlockWave: 3,
+    tags: ['ground', 'fast'], detectRange: 45, contactStatus: { chance: 0.2, type: StatusType.Burn, power: 1 }, description: 'A burning imp. Fast and singes on touch.' },
+  { id: 'larva', name: 'Larva', behavior: 'chaser', shape: 'blob', color: 0x88ff44, accent: 0x223322, scale: 0.7, orientYaw: false,
+    health: 16, speed: 4.5, contactDamage: 5, radius: 0.4, height: 0.6, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 10, tier: 1, unlockWave: 3,
+    tags: ['ground', 'chaser'], detectRange: 40, description: 'A wriggling larva. Disgusting, not dangerous.' },
+  { id: 'wisp2', name: 'Wisp', behavior: 'swarm', shape: 'swarm', color: 0xb266ff, accent: 0xffffff, scale: 0.5, orientYaw: false,
+    health: 9, speed: 8.5, contactDamage: 4, radius: 0.28, height: 0.5, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 11, tier: 1, unlockWave: 3,
+    tags: ['flying', 'swarm'], detectRange: 40, flying: true, hoverHeight: 1.8, description: 'A void wisp. Drifts in numbers.' },
+  { id: 'chitter', name: 'Chitter', behavior: 'swarm', shape: 'swarm', color: 0xff66aa, accent: 0xffffff, scale: 0.55, orientYaw: false,
+    health: 10, speed: 8.8, contactDamage: 4, radius: 0.3, height: 0.5, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 11, tier: 1, unlockWave: 4,
+    tags: ['ground', 'swarm', 'fast'], detectRange: 40, description: 'A chittering horror. The sound before the swarm.' },
+  { id: 'tick', name: 'Tick', behavior: 'kamikaze', shape: 'swarm', color: 0xff3344, accent: 0xffe066, scale: 0.5, orientYaw: false,
+    health: 6, speed: 11, contactDamage: 14, radius: 0.25, height: 0.5, xp: 2, currency: { min: 0, max: 1, chance: 0.5 }, weight: 6, tier: 1, unlockWave: 4,
+    tags: ['ground', 'fast', 'suicide'], detectRange: 40, description: 'A tick that detonates on contact. Pop them early.' },
+  { id: 'bat', name: 'Bat', behavior: 'swarm', shape: 'swarm', color: 0x8a5bff, accent: 0xffffff, scale: 0.55, orientYaw: false,
+    health: 11, speed: 9, contactDamage: 5, radius: 0.3, height: 0.5, xp: 1, currency: { min: 0, max: 1, chance: 0.5 }, weight: 10, tier: 1, unlockWave: 4,
+    tags: ['flying', 'swarm', 'fast'], detectRange: 40, flying: true, hoverHeight: 1.7, description: 'A swarm bat. Fills the sky with nuisance.' },
+  { id: 'shambler', name: 'Shambler', behavior: 'chaser', shape: 'blob', color: 0x4fd07a, accent: 0x223322, scale: 0.8, orientYaw: false,
+    health: 22, speed: 3.8, contactDamage: 7, radius: 0.45, height: 0.8, xp: 2, currency: { min: 0, max: 2, chance: 0.6 }, weight: 8, tier: 1, unlockWave: 4,
+    tags: ['ground', 'chaser'], detectRange: 40, description: 'A shambling mass. Slow, slightly sturdier.' },
+  { id: 'stinger', name: 'Stinger', behavior: 'fastChaser', shape: 'shard', color: 0xffe066, accent: 0xff3344, scale: 0.7, orientYaw: true,
+    health: 13, speed: 8.5, contactDamage: 7, radius: 0.35, height: 0.7, xp: 2, currency: { min: 0, max: 2, chance: 0.6 }, weight: 8, tier: 1, unlockWave: 5,
+    tags: ['ground', 'fast'], detectRange: 45, contactStatus: { chance: 0.25, type: StatusType.Poison, power: 1 }, description: 'A stinger. Quick jabs that poison.' },
+  { id: 'firefly', name: 'Firefly', behavior: 'swarm', shape: 'swarm', color: 0xffaa22, accent: 0xffffff, scale: 0.5, orientYaw: false,
+    health: 12, speed: 8, contactDamage: 5, radius: 0.3, height: 0.5, xp: 2, currency: { min: 0, max: 2, chance: 0.5 }, weight: 8, tier: 1, unlockWave: 5,
+    tags: ['flying', 'swarm', 'status'], detectRange: 40, flying: true, hoverHeight: 1.6, contactStatus: { chance: 0.3, type: StatusType.Burn, power: 1 }, description: 'A firefly swarm that ignites on contact.' },
+  { id: 'frostfly', name: 'Frostfly', behavior: 'swarm', shape: 'swarm', color: 0x9fe7ff, accent: 0xffffff, scale: 0.5, orientYaw: false,
+    health: 12, speed: 8, contactDamage: 5, radius: 0.3, height: 0.5, xp: 2, currency: { min: 0, max: 2, chance: 0.5 }, weight: 8, tier: 1, unlockWave: 5,
+    tags: ['flying', 'swarm', 'status'], detectRange: 40, flying: true, hoverHeight: 1.6, contactStatus: { chance: 0.3, type: StatusType.Slow, power: 1 }, description: 'A frostfly swarm that chills on contact.' },
+]);
