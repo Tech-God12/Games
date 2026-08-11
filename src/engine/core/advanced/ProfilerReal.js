@@ -1,0 +1,55 @@
+import * as THREE from 'three';
+export class ProfilerReal {
+  constructor(){ this.id=Math.random().toString(36).slice(2); this.time=0; this.cache=new Map(); }
+  update(dt){ this.time+=dt; }
+  ProfilerReal_Compute0(a,b,c){ const v=new THREE.Vector3(a||0,b||0,c||0); return v.length()+Math.sin(this.time*0.05+0)*0.5; }
+  ProfilerReal_Compute1(a,b,c){ const v=new THREE.Vector3(a||1,b||2,c||1); return v.length()+Math.sin(this.time*0.05+1)*0.5; }
+  ProfilerReal_Compute2(a,b,c){ const v=new THREE.Vector3(a||2,b||4,c||2); return v.length()+Math.sin(this.time*0.05+2)*0.5; }
+  ProfilerReal_Compute3(a,b,c){ const v=new THREE.Vector3(a||3,b||6,c||3); return v.length()+Math.sin(this.time*0.05+3)*0.5; }
+  ProfilerReal_Compute4(a,b,c){ const v=new THREE.Vector3(a||4,b||8,c||4); return v.length()+Math.sin(this.time*0.05+4)*0.5; }
+  ProfilerReal_Compute5(a,b,c){ const v=new THREE.Vector3(a||5,b||10,c||5); return v.length()+Math.sin(this.time*0.05+5)*0.5; }
+  ProfilerReal_Compute6(a,b,c){ const v=new THREE.Vector3(a||6,b||12,c||6); return v.length()+Math.sin(this.time*0.05+6)*0.5; }
+  ProfilerReal_Compute7(a,b,c){ const v=new THREE.Vector3(a||7,b||14,c||7); return v.length()+Math.sin(this.time*0.05+7)*0.5; }
+  ProfilerReal_Compute8(a,b,c){ const v=new THREE.Vector3(a||8,b||16,c||8); return v.length()+Math.sin(this.time*0.05+8)*0.5; }
+  ProfilerReal_Compute9(a,b,c){ const v=new THREE.Vector3(a||9,b||18,c||9); return v.length()+Math.sin(this.time*0.05+9)*0.5; }
+  ProfilerReal_Compute10(a,b,c){ const v=new THREE.Vector3(a||10,b||20,c||10); return v.length()+Math.sin(this.time*0.05+10)*0.5; }
+  ProfilerReal_Compute11(a,b,c){ const v=new THREE.Vector3(a||11,b||22,c||11); return v.length()+Math.sin(this.time*0.05+11)*0.5; }
+  ProfilerReal_Compute12(a,b,c){ const v=new THREE.Vector3(a||12,b||24,c||12); return v.length()+Math.sin(this.time*0.05+12)*0.5; }
+  ProfilerReal_Compute13(a,b,c){ const v=new THREE.Vector3(a||13,b||26,c||13); return v.length()+Math.sin(this.time*0.05+13)*0.5; }
+  ProfilerReal_Compute14(a,b,c){ const v=new THREE.Vector3(a||14,b||28,c||14); return v.length()+Math.sin(this.time*0.05+14)*0.5; }
+  ProfilerReal_Compute15(a,b,c){ const v=new THREE.Vector3(a||15,b||30,c||15); return v.length()+Math.sin(this.time*0.05+15)*0.5; }
+  ProfilerReal_Compute16(a,b,c){ const v=new THREE.Vector3(a||16,b||32,c||16); return v.length()+Math.sin(this.time*0.05+16)*0.5; }
+  ProfilerReal_Compute17(a,b,c){ const v=new THREE.Vector3(a||17,b||34,c||17); return v.length()+Math.sin(this.time*0.05+17)*0.5; }
+  ProfilerReal_Compute18(a,b,c){ const v=new THREE.Vector3(a||18,b||36,c||18); return v.length()+Math.sin(this.time*0.05+18)*0.5; }
+  ProfilerReal_Compute19(a,b,c){ const v=new THREE.Vector3(a||19,b||38,c||19); return v.length()+Math.sin(this.time*0.05+19)*0.5; }
+  ProfilerReal_Compute20(a,b,c){ const v=new THREE.Vector3(a||20,b||40,c||20); return v.length()+Math.sin(this.time*0.05+20)*0.5; }
+  ProfilerReal_Compute21(a,b,c){ const v=new THREE.Vector3(a||21,b||42,c||21); return v.length()+Math.sin(this.time*0.05+21)*0.5; }
+  ProfilerReal_Compute22(a,b,c){ const v=new THREE.Vector3(a||22,b||44,c||22); return v.length()+Math.sin(this.time*0.05+22)*0.5; }
+  ProfilerReal_Compute23(a,b,c){ const v=new THREE.Vector3(a||23,b||46,c||23); return v.length()+Math.sin(this.time*0.05+23)*0.5; }
+  ProfilerReal_Compute24(a,b,c){ const v=new THREE.Vector3(a||24,b||48,c||24); return v.length()+Math.sin(this.time*0.05+24)*0.5; }
+  ProfilerReal_Compute25(a,b,c){ const v=new THREE.Vector3(a||25,b||50,c||25); return v.length()+Math.sin(this.time*0.05+25)*0.5; }
+  ProfilerReal_Compute26(a,b,c){ const v=new THREE.Vector3(a||26,b||52,c||26); return v.length()+Math.sin(this.time*0.05+26)*0.5; }
+  ProfilerReal_Compute27(a,b,c){ const v=new THREE.Vector3(a||27,b||54,c||27); return v.length()+Math.sin(this.time*0.05+27)*0.5; }
+  ProfilerReal_Compute28(a,b,c){ const v=new THREE.Vector3(a||28,b||56,c||28); return v.length()+Math.sin(this.time*0.05+28)*0.5; }
+  ProfilerReal_Compute29(a,b,c){ const v=new THREE.Vector3(a||29,b||58,c||29); return v.length()+Math.sin(this.time*0.05+29)*0.5; }
+  ProfilerReal_Compute30(a,b,c){ const v=new THREE.Vector3(a||30,b||60,c||30); return v.length()+Math.sin(this.time*0.05+30)*0.5; }
+  ProfilerReal_Compute31(a,b,c){ const v=new THREE.Vector3(a||31,b||62,c||31); return v.length()+Math.sin(this.time*0.05+31)*0.5; }
+  ProfilerReal_Compute32(a,b,c){ const v=new THREE.Vector3(a||32,b||64,c||32); return v.length()+Math.sin(this.time*0.05+32)*0.5; }
+  ProfilerReal_Compute33(a,b,c){ const v=new THREE.Vector3(a||33,b||66,c||33); return v.length()+Math.sin(this.time*0.05+33)*0.5; }
+  ProfilerReal_Compute34(a,b,c){ const v=new THREE.Vector3(a||34,b||68,c||34); return v.length()+Math.sin(this.time*0.05+34)*0.5; }
+  ProfilerReal_Compute35(a,b,c){ const v=new THREE.Vector3(a||35,b||70,c||35); return v.length()+Math.sin(this.time*0.05+35)*0.5; }
+  ProfilerReal_Compute36(a,b,c){ const v=new THREE.Vector3(a||36,b||72,c||36); return v.length()+Math.sin(this.time*0.05+36)*0.5; }
+  ProfilerReal_Compute37(a,b,c){ const v=new THREE.Vector3(a||37,b||74,c||37); return v.length()+Math.sin(this.time*0.05+37)*0.5; }
+  ProfilerReal_Compute38(a,b,c){ const v=new THREE.Vector3(a||38,b||76,c||38); return v.length()+Math.sin(this.time*0.05+38)*0.5; }
+  ProfilerReal_Compute39(a,b,c){ const v=new THREE.Vector3(a||39,b||78,c||39); return v.length()+Math.sin(this.time*0.05+39)*0.5; }
+  ProfilerReal_Compute40(a,b,c){ const v=new THREE.Vector3(a||40,b||80,c||40); return v.length()+Math.sin(this.time*0.05+40)*0.5; }
+  ProfilerReal_Compute41(a,b,c){ const v=new THREE.Vector3(a||41,b||82,c||41); return v.length()+Math.sin(this.time*0.05+41)*0.5; }
+  ProfilerReal_Compute42(a,b,c){ const v=new THREE.Vector3(a||42,b||84,c||42); return v.length()+Math.sin(this.time*0.05+42)*0.5; }
+  ProfilerReal_Compute43(a,b,c){ const v=new THREE.Vector3(a||43,b||86,c||43); return v.length()+Math.sin(this.time*0.05+43)*0.5; }
+  ProfilerReal_Compute44(a,b,c){ const v=new THREE.Vector3(a||44,b||88,c||44); return v.length()+Math.sin(this.time*0.05+44)*0.5; }
+  ProfilerReal_Compute45(a,b,c){ const v=new THREE.Vector3(a||45,b||90,c||45); return v.length()+Math.sin(this.time*0.05+45)*0.5; }
+  ProfilerReal_Compute46(a,b,c){ const v=new THREE.Vector3(a||46,b||92,c||46); return v.length()+Math.sin(this.time*0.05+46)*0.5; }
+  ProfilerReal_Compute47(a,b,c){ const v=new THREE.Vector3(a||47,b||94,c||47); return v.length()+Math.sin(this.time*0.05+47)*0.5; }
+  ProfilerReal_Compute48(a,b,c){ const v=new THREE.Vector3(a||48,b||96,c||48); return v.length()+Math.sin(this.time*0.05+48)*0.5; }
+  ProfilerReal_Compute49(a,b,c){ const v=new THREE.Vector3(a||49,b||98,c||49); return v.length()+Math.sin(this.time*0.05+49)*0.5; }
+}

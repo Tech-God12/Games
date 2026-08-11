@@ -1,0 +1,28 @@
+import * as THREE from 'three';
+export class Material {
+  constructor(config={}){ Object.assign(this, config); this.id=Math.random().toString(36).substr(2,9); this.position=config.position||new THREE.Vector3(); this.velocity=config.velocity||new THREE.Vector3(); this.angularVelocity=config.angularVelocity||new THREE.Vector3(); this.quaternion=config.quaternion||new THREE.Quaternion(); this.mass=config.mass||1; this.invMass=this.mass>0?1/this.mass:0; this.isStatic=config.isStatic||false; this.restitution=config.restitution||0.3; this.friction=config.friction||0.5; this.linearDamping=config.linearDamping||0.02; this.angularDamping=config.angularDamping||0.05; this.gravityScale=config.gravityScale??1; this.bounds=config.bounds||{radius:0.5, type:'sphere'}; this.sleeping=false; this.sleepTimer=0; }
+  applyForce(force, point){ if(this.isStatic) return; this.velocity.add(force.clone().multiplyScalar(this.invMass)); if(point){ const r=point.clone().sub(this.position); const torque=r.cross(force); this.angularVelocity.add(torque.multiplyScalar(this.invMass)); } this.wakeUp(); }
+  applyImpulse(impulse){ if(this.isStatic) return; this.velocity.add(impulse.clone().multiplyScalar(this.invMass)); this.wakeUp(); }
+  wakeUp(){ this.sleeping=false; this.sleepTimer=0; }
+  updateMatrixWorld(){ /* mock */ }
+    method0(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method1(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method2(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method3(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method4(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method5(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method6(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method7(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method8(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method9(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method10(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method11(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method12(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method13(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method14(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method15(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method16(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method17(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method18(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+  method19(dt){ this.sleepTimer+=dt; if(this.velocity.length()<0.01 && this.angularVelocity.length()<0.01) this.sleepTimer+=dt; else this.sleepTimer=0; if(this.sleepTimer>2) this.sleeping=true; return this.sleepTimer; }
+}
