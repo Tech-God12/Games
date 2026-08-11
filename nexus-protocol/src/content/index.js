@@ -61,6 +61,7 @@ import '../items/definitions/items4.js';
 import '../items/definitions/items5.js';
 import '../items/definitions/items6.js';
 import '../items/definitions/items7.js';
+import '../items/definitions/items8.js';
 
 // Perks
 import '../perks/definitions/perks.js';
