@@ -94,6 +94,7 @@ export class EventBus {
         entry.fn(payload, evt);
       } catch (err) {
         console.error(`[eventbus] listener error for "${evt}":`, err);
+        console.error(err?.stack?.split('\n').slice(1, 8).join('\n'));
       }
     }
   }
