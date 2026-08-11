@@ -32,12 +32,14 @@ import '../enemies/definitions/elite3.js';
 import '../enemies/definitions/ground4.js';
 import '../enemies/definitions/swarm.js';
 import '../enemies/definitions/enemies5.js';
+import '../enemies/definitions/casters.js';
 
 // Bosses
 import '../bosses/definitions/bosses.js';
 import '../bosses/definitions/bosses2.js';
 import '../bosses/definitions/bosses3.js';
 import '../bosses/definitions/bosses4.js';
+import '../bosses/definitions/bosses5.js';
 
 // Items
 import '../items/definitions/items.js';
@@ -58,12 +60,19 @@ import '../abilities/definitions/abilities.js';
 import '../abilities/definitions/abilities2.js';
 import '../abilities/definitions/abilities3.js';
 import '../abilities/definitions/abilities4.js';
+import '../abilities/definitions/abilities5.js';
 
 // Characters
 import '../player/Characters.js';
 import '../player/Characters2.js';
 import '../player/Characters3.js';
 import '../player/Characters4.js';
+import '../player/Characters5.js';
+
+// Extended localization
+import { installExtraLocalization } from '../data/Localization2.js';
+import * as _Loc from '../data/Localization.js';
+installExtraLocalization(_Loc);
 
 import { WeaponRegistry } from '../weapons/WeaponRegistry.js';
 import { EnemyRegistry } from '../enemies/EnemyRegistry.js';
