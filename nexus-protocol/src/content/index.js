@@ -23,6 +23,7 @@ import '../weapons/definitions/shotguns2.js';
 import '../weapons/definitions/smgs2.js';
 import '../weapons/definitions/heavy3.js';
 import '../weapons/definitions/energy2.js';
+import '../weapons/definitions/melee2.js';
 
 // Enemies
 import '../enemies/definitions/basic.js';
@@ -39,6 +40,7 @@ import '../enemies/definitions/swarm.js';
 import '../enemies/definitions/enemies5.js';
 import '../enemies/definitions/casters.js';
 import '../enemies/definitions/enemies6.js';
+import '../enemies/definitions/flying4.js';
 
 // Bosses
 import '../bosses/definitions/bosses.js';
