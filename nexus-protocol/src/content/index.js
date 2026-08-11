@@ -86,6 +86,7 @@ import '../data/WaveScripts2.js';
 import * as _Lore from '../data/Lore.js';
 import { installExtraLore } from '../data/Lore2.js';
 installExtraLore(_Lore);
+import '../pickups/Pickups.js';
 
 import { WeaponRegistry } from '../weapons/WeaponRegistry.js';
 import { EnemyRegistry } from '../enemies/EnemyRegistry.js';

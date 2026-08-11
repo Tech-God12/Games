@@ -45,6 +45,7 @@ import { DailyChallenge } from './DailyChallenge.js';
 import { MetaSkillTree } from '../progression/MetaSkillTree.js';
 import { StatsTracker } from '../progression/StatsTracker.js';
 import { RunLog } from './RunLog.js';
+import { Telemetry } from './Telemetry.js';
 
 // Systems
 import { LifetimeSystem } from '../systems/LifetimeSystem.js';
@@ -158,6 +159,7 @@ export class Game {
     this.achievementManager = new AchievementManager(this.save);
     this.statsTracker = new StatsTracker(this.save);
     this.runLog = new RunLog(this.progression);
+    this.telemetry = new Telemetry();
     this._runCtx = {};
 
     // systems
@@ -448,6 +450,7 @@ export class Game {
     if (this.waveManager.wave >= 10 && this._wave10StartTime === null) { this._wave10StartTime = this.progression.time; this._runCtx.wave10Under5 = this._wave10StartTime <= 300; }
     this.achievementManager.update(dt);
     this.statsTracker.update(dt);
+    this.telemetry.update(dt);
     if (this.player) { const b = this.player.get(Body); if (b) this.statsTracker.noteDistance(b.pos); }
     this.statsTracker.noteBiomeTime(this.arena.biome.id, dt);
     this.cameraRig.update(dt, this.player);
