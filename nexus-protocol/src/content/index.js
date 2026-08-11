@@ -41,6 +41,7 @@ import '../enemies/definitions/enemies5.js';
 import '../enemies/definitions/casters.js';
 import '../enemies/definitions/enemies6.js';
 import '../enemies/definitions/flying4.js';
+import '../enemies/definitions/ground5.js';
 
 // Bosses
 import '../bosses/definitions/bosses.js';
@@ -56,6 +57,7 @@ import '../items/definitions/items3.js';
 import '../items/definitions/items4.js';
 import '../items/definitions/items5.js';
 import '../items/definitions/items6.js';
+import '../items/definitions/items7.js';
 
 // Perks
 import '../perks/definitions/perks.js';
